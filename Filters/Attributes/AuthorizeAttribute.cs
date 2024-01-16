@@ -11,8 +11,11 @@ namespace Semifinals.Filters;
 public class AuthorizeAttribute
     : Attribute, IFunctionInvocationFilter, IFunctionExceptionFilter
 {
+    public readonly int[] Roles;
+
     public AuthorizeAttribute(params int[] roles) : base()
     {
+        Roles = roles;
     }
 
     async Task IFunctionInvocationFilter.OnExecutingAsync(
@@ -20,10 +23,12 @@ public class AuthorizeAttribute
         CancellationToken cancellationToken)
     {
         Console.WriteLine("OnExecutingAsync");
-        bool authorized = true;
-        bool authenticated = true;
 
         var req = executingContext.GetRequest();
+
+        // TODO: Handle auth here
+        bool authenticated = true;
+        bool authorized = false;
 
         if (!authenticated)
             throw await req.HttpContext.Response.UnauthorizedResult();
@@ -36,7 +41,6 @@ public class AuthorizeAttribute
         FunctionExecutedContext executedContext,
         CancellationToken cancellationToken)
     {
-        Console.WriteLine("OnExecutedAsync");
         return Task.CompletedTask;
     }
 
@@ -46,15 +50,16 @@ public class AuthorizeAttribute
     {
         try
         {
-            throw exceptionContext.Exception;
+            throw exceptionContext.Exception.InnerException!;
         }
         catch (AuthorizeFailureException)
         {
-            Console.WriteLine("OnExceptionAsync: Known error");
+            // Accept failures resulted by bad authorization
         }
-        catch (Exception)
+        catch (Exception ex)
         {
-            Console.WriteLine("OnExceptionAsync: Unknown error");
+            // TODO: Appropriately handle unexpected exceptions
+            Console.WriteLine($"Unexpected error occurred: {ex.GetType().Name}");
         }
 
         return Task.CompletedTask;
