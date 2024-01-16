@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.Azure.WebJobs.Host;
-
-namespace Semifinals.Filters.Extensions;
+﻿namespace Semifinals.Filters.Extensions;
 
 #pragma warning disable 0618
 public static class FunctionExecutingContextExtensions

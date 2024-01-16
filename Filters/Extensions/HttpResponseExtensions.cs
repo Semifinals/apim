@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Semifinals.Filters.Exceptions;
-using System.Net;
+﻿using Semifinals.Filters.Exceptions;
 
 namespace Semifinals.Filters.Extensions;
 

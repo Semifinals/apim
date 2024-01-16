@@ -1,5 +1,4 @@
-﻿using Microsoft.Azure.WebJobs.Host;
-using Semifinals.Filters.Exceptions;
+﻿using Semifinals.Filters.Exceptions;
 using Semifinals.Filters.Extensions;
 
 namespace Semifinals.Filters;

@@ -1,6 +1,4 @@
-﻿using System.Net;
-
-namespace Semifinals.Filters.Exceptions;
+﻿namespace Semifinals.Filters.Exceptions;
 
 public class AuthorizeFailureException : Exception
 {
