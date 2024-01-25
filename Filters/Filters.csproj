@@ -13,4 +13,8 @@
     <PackageReference Include="Microsoft.Azure.WebJobs" Version="3.0.39" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Policies\Schemas\" />
+  </ItemGroup>
+
 </Project>
