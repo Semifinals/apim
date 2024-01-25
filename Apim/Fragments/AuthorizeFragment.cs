@@ -1,4 +1,4 @@
-﻿using Semifinals.Apim.Policies.Nodes;
+﻿using Semifinals.Apim.Nodes;
 
 namespace Semifinals.Apim.Fragments;
 
@@ -8,7 +8,7 @@ namespace Semifinals.Apim.Fragments;
 
 public sealed class AuthorizeFragment : Fragment
 {
-    public AuthorizeFragment() : base()
+    public AuthorizeFragment() : base("authorize")
     {
         string authorizerUrl = "https://example.com";
 
@@ -61,10 +61,10 @@ public sealed class AuthorizeFragment : Fragment
                     new XSetVariable("requestBody",
                         "@(context.Request.Body.As<string>(preserveContent: true))"))),
             // Submit auth request
-            new XSendRequest("new", "response", 10, false,
+            new XSendRequest("response",
                 new XSetUrl(authorizerUrl),
-                new XSetMethod("POST"),
-                new XSetBody("liquid", body)),
+                new XSetMethod(HttpMethod.Post),
+                new XSetBody(body)),
             // Handle failed request
             new XChoose(
                 new XWhen(@"@(((IResponse)context.Variables[""response""]).StatusCode != 200)",

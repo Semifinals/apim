@@ -1,16 +1,22 @@
-﻿namespace Semifinals.Apim.Fragments;
+﻿using Semifinals.Apim.Nodes;
+
+namespace Semifinals.Apim.Fragments;
 
 public class Fragment
 {
+    public string Id { get; }
+    
     public XElement Data { get; protected set; }
 
-    public Fragment()
+    public Fragment(string id)
     {
-        Data = new XElement("fragment");
+        Id = id;
+        Data = new XIncludeFragment(id);
     }
 
-    public Fragment(XElement data)
+    public Fragment(XIncludeFragment data)
     {
+        Id = data.FragmentId;
         Data = data;
     }
 

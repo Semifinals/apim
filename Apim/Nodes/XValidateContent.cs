@@ -3,9 +3,9 @@
 public class XValidateContent : XElement
 {
     public XValidateContent(
-        XValidateContentAction unspecifiedContentTypeAction,
+        EXValidateContentAction unspecifiedContentTypeAction,
         int maxSize,
-        XValidateContentAction sizeExceededAction,
+        EXValidateContentAction sizeExceededAction,
         string errorsVariableName) : base("validate-content")
     {
         Add(
@@ -20,7 +20,7 @@ public class XValidateContent : XElement
     }
 }
 
-public enum XValidateContentAction
+public enum EXValidateContentAction
 {
     Ignore,
     Prevent,

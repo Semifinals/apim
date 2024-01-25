@@ -2,8 +2,10 @@ namespace Semifinals.Apim.Nodes;
 
 public class XChoose : XElement
 {
-    public XChoose(params XNode[] nodes) : base("choose")
+    public XChoose(params IXChooseChild[] nodes) : base("choose")
     {
         Add(nodes);
     }
 }
+
+public interface IXChooseChild { }

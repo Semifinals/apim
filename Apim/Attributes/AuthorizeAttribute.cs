@@ -1,6 +1,6 @@
 using Semifinals.Apim.Policies;
 
-namespace Semifinals.Apim;
+namespace Semifinals.Apim.Attributes;
 
 public sealed class AuthorizeAttribute : PolicyAttribute
 {

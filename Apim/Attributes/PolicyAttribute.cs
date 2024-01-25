@@ -1,6 +1,6 @@
 using Semifinals.Apim.Policies;
 
-namespace Semifinals.Apim;
+namespace Semifinals.Apim.Attributes;
 
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
 public class PolicyAttribute : Attribute

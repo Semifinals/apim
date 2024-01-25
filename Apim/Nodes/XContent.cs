@@ -4,7 +4,7 @@ public class XContent : XElement
 {
     public XContent(
         string type,
-        XContentValidationType validateAs,
+        EXContentValidationType validateAs,
         string? schemaId = null,
         string? schemaRef = null,
         bool? allowAdditionalProperties = null)
@@ -30,7 +30,7 @@ public class XContent : XElement
     }
 }
 
-public enum XContentValidationType
+public enum EXContentValidationType
 {
     Json,
     Xml,

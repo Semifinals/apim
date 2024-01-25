@@ -1,11 +1,21 @@
 namespace Semifinals.Apim.Nodes;
 
-public class XSetBody : XElement
+public class XSetBody : XElement, IXReturnResponseChild, IXSendOneWayRequestChild, IXSendRequestChild
 {
-    public XSetBody(string template, string value) : base("set-body")
+    public XSetBody(string value) : base("set-body")
+    {
+        Add(value);
+    }
+    
+    public XSetBody(EXSetBodyTemplate template, string value) : base("set-body")
     {
         Add(
-            value,
-            new XAttribute("template", template));
+            new XAttribute("template", template),
+            value);
     }
+}
+
+public enum EXSetBodyTemplate
+{
+    Liquid
 }

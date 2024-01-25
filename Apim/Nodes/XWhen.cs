@@ -1,11 +1,11 @@
 namespace Semifinals.Apim.Nodes;
 
-public class XWhen : XElement
+public class XWhen : XElement, IXChooseChild
 {
     public XWhen(string condition, params XNode[] nodes) : base("when")
     {
         Add(
-            nodes,
-            new XAttribute("condition", condition));
+            new XAttribute("condition", condition),
+            nodes);
     }
 }

@@ -1,6 +1,6 @@
 namespace Semifinals.Apim.Nodes;
 
-public class XSetUrl : XElement
+public class XSetUrl : XElement, IXSendOneWayRequestChild, IXSendRequestChild
 {
     public XSetUrl(string url) : base("set-url")
     {
