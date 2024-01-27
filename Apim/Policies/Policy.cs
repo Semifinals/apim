@@ -1,5 +1,3 @@
-using Semifinals.Apim.Extensions;
-
 namespace Semifinals.Apim.Policies;
 
 public class Policy

@@ -1,5 +1,5 @@
-using Semifinals.Apim.Policies.Fragments;
-using Semifinals.Apim.Policies.Nodes;
+using Semifinals.Apim.Fragments;
+using Semifinals.Apim.Nodes;
 
 namespace Semifinals.Apim.Policies;
 
