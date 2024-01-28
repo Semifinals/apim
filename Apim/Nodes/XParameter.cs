@@ -1,10 +1,10 @@
 ﻿namespace Semifinals.Apim.Nodes;
 
-public class XParameter : XElement, XHeadersChild, XPathChild, XQueryChild
+public class XParameter : XElement, IXHeadersChild, IXPathChild, IXQueryChild
 {
     public XParameter(
         string name,
-        XParameterAction action)
+        EXParameterAction action)
         : base("parameter")
     {
         Add(
@@ -13,7 +13,7 @@ public class XParameter : XElement, XHeadersChild, XPathChild, XQueryChild
     }
 }
 
-public enum XParameterAction
+public enum EXParameterAction
 {
     Ignore,
     Prevent,

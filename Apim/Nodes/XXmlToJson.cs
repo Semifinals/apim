@@ -3,8 +3,8 @@
 public class XXmlToJson : XElement
 {
     public XXmlToJson(
-        XXmlToJsonKind kind,
-        XXmlToJsonApply apply,
+        EXXmlToJsonKind kind,
+        EXXmlToJsonApply apply,
         bool considerAcceptHeader = true)
         : base("xml-to-json")
     {
@@ -15,13 +15,13 @@ public class XXmlToJson : XElement
     }
 }
 
-public enum XXmlToJsonKind
+public enum EXXmlToJsonKind
 {
     JavascriptFriendly,
     Direct
 }
 
-public enum XXmlToJsonApply
+public enum EXXmlToJsonApply
 {
     Always,
     ContentTypeXml

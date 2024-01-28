@@ -1,10 +1,10 @@
 ﻿namespace Semifinals.Apim.Nodes;
 
-public class XStatusCode : XElement, XValidateStatusCodeChild
+public class XStatusCode : XElement, IXValidateStatusCodeChild
 {
     public XStatusCode(
         HttpStatusCode code,
-        XStatusCodeAction action)
+        EXStatusCodeAction action)
         : base("status-code")
     {
         Add(
@@ -14,7 +14,7 @@ public class XStatusCode : XElement, XValidateStatusCodeChild
 
     public XStatusCode(
         int code,
-        XStatusCodeAction action)
+        EXStatusCodeAction action)
         : base("status-code")
     {
         Add(
@@ -24,7 +24,7 @@ public class XStatusCode : XElement, XValidateStatusCodeChild
     
     public XStatusCode(
         string code,
-        XStatusCodeAction action)
+        EXStatusCodeAction action)
         : base("status-code")
     {
         Add(
@@ -33,7 +33,7 @@ public class XStatusCode : XElement, XValidateStatusCodeChild
     }
 }
 
-public enum XStatusCodeAction
+public enum EXStatusCodeAction
 {
     Ignore,
     Prevent,

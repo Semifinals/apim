@@ -3,9 +3,9 @@
 public class XValidateParameters : XElement
 {
     public XValidateParameters(
-        XValidateParametersSpecifiedParameterAction specifiedAction,
-        XValidateParametersUnspecifiedParameterAction unspecifiedAction,
-        params XValidateParametersChild[] nodes)
+        EXValidateParametersSpecifiedParameterAction specifiedAction,
+        EXValidateParametersUnspecifiedParameterAction unspecifiedAction,
+        params IXValidateParametersChild[] nodes)
         : base("validate-parameters")
     {
         Add(
@@ -15,10 +15,10 @@ public class XValidateParameters : XElement
     }
     
     public XValidateParameters(
-        XValidateParametersSpecifiedParameterAction specifiedAction,
-        XValidateParametersUnspecifiedParameterAction unspecifiedAction,
+        EXValidateParametersSpecifiedParameterAction specifiedAction,
+        EXValidateParametersUnspecifiedParameterAction unspecifiedAction,
         string errorsVariableName,
-        params XValidateParametersChild[] nodes)
+        params IXValidateParametersChild[] nodes)
         : base("validate-parameters")
     {
         Add(
@@ -29,18 +29,18 @@ public class XValidateParameters : XElement
     }
 }
 
-public enum XValidateParametersSpecifiedParameterAction
+public enum EXValidateParametersSpecifiedParameterAction
 {
     Ignore,
     Prevent,
     Detect
 }
 
-public enum XValidateParametersUnspecifiedParameterAction
+public enum EXValidateParametersUnspecifiedParameterAction
 {
     Ignore,
     Prevent,
     Detect
 }
 
-public interface XValidateParametersChild { }
+public interface IXValidateParametersChild { }

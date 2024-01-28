@@ -1,10 +1,10 @@
 ﻿namespace Semifinals.Apim.Nodes;
 
-public class XPath : XElement, XValidateParametersChild
+public class XPath : XElement, IXValidateParametersChild
 {
     public XPath(
         string name,
-        XPathSpecifiedParameterAction specifiedAction)
+        EXPathSpecifiedParameterAction specifiedAction)
         : base("path")
     {
         Add(
@@ -13,11 +13,11 @@ public class XPath : XElement, XValidateParametersChild
     }
 }
 
-public enum XPathSpecifiedParameterAction
+public enum EXPathSpecifiedParameterAction
 {
     Ignore,
     Prevent,
     Detect
 }
 
-public interface XPathChild { }
+public interface IXPathChild { }

@@ -1,11 +1,11 @@
 ﻿namespace Semifinals.Apim.Nodes;
 
-public class XHeaders : XElement, XValidateParametersChild
+public class XHeaders : XElement, IXValidateParametersChild
 {
     public XHeaders(
         string name,
-        XHeadersSpecifiedParameterAction specifiedAction,
-        XHeadersUnspecifiedParameterAction unspecifiedAction)
+        EXHeadersSpecifiedParameterAction specifiedAction,
+        EXHeadersUnspecifiedParameterAction unspecifiedAction)
         : base("headers")
     {
         Add(
@@ -15,18 +15,18 @@ public class XHeaders : XElement, XValidateParametersChild
     }
 }
 
-public enum XHeadersSpecifiedParameterAction
+public enum EXHeadersSpecifiedParameterAction
 {
     Ignore,
     Prevent,
     Detect
 }
 
-public enum XHeadersUnspecifiedParameterAction
+public enum EXHeadersUnspecifiedParameterAction
 {
     Ignore,
     Prevent,
     Detect
 }
 
-public interface XHeadersChild { }
+public interface IXHeadersChild { }

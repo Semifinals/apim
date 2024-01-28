@@ -3,8 +3,8 @@
 public class XValidateStatusCode : XElement
 {
     public XValidateStatusCode(
-        XValidateStatusCodeUnspecifiedAction unspecifiedAction,
-        params XValidateStatusCodeChild[] nodes)
+        EXValidateStatusCodeUnspecifiedAction unspecifiedAction,
+        params IXValidateStatusCodeChild[] nodes)
         : base("validate-status-code")
     {
         Add(
@@ -13,9 +13,9 @@ public class XValidateStatusCode : XElement
     }
     
     public XValidateStatusCode(
-        XValidateStatusCodeUnspecifiedAction unspecifiedAction,
+        EXValidateStatusCodeUnspecifiedAction unspecifiedAction,
         string errorsVariableName,
-        params XValidateStatusCodeChild[] nodes)
+        params IXValidateStatusCodeChild[] nodes)
         : base("validate-status-code")
     {
         Add(
@@ -25,11 +25,11 @@ public class XValidateStatusCode : XElement
     }
 }
 
-public enum XValidateStatusCodeUnspecifiedAction
+public enum EXValidateStatusCodeUnspecifiedAction
 {
     Ignore,
     Prevent,
     Detect
 }
 
-public interface XValidateStatusCodeChild { }
+public interface IXValidateStatusCodeChild { }

@@ -3,7 +3,7 @@
 public class XJsonToXml : XElement
 {
     public XJsonToXml(
-        XJsonToXmlApply apply,
+        EXJsonToXmlApply apply,
         char namespaceSeparator,
         string namespacePrefix,
         string attributeBlockName,
@@ -21,7 +21,7 @@ public class XJsonToXml : XElement
     }
 }
 
-public enum XJsonToXmlApply
+public enum EXJsonToXmlApply
 {
     Always,
     ContentTypeJson

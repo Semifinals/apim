@@ -3,9 +3,9 @@
 public class XValidateHeaders : XElement
 {
     public XValidateHeaders(
-        XValidateHeadersSpecifiedParameterAction specifiedAction,
-        XValidateHeadersUnspecifiedParameterAction unspecifiedAction,
-        params XValidateHeadersChild[] nodes)
+        EXValidateHeadersSpecifiedParameterAction specifiedAction,
+        EXValidateHeadersUnspecifiedParameterAction unspecifiedAction,
+        params IXValidateHeadersChild[] nodes)
         : base("validate-headers")
     {
         Add(
@@ -15,10 +15,10 @@ public class XValidateHeaders : XElement
     }
 
     public XValidateHeaders(
-        XValidateHeadersSpecifiedParameterAction specifiedAction,
-        XValidateHeadersUnspecifiedParameterAction unspecifiedAction,
+        EXValidateHeadersSpecifiedParameterAction specifiedAction,
+        EXValidateHeadersUnspecifiedParameterAction unspecifiedAction,
         string errorsVariableName,
-        params XValidateHeadersChild[] nodes)
+        params IXValidateHeadersChild[] nodes)
         : base("validate-headers")
     {
         Add(
@@ -29,18 +29,18 @@ public class XValidateHeaders : XElement
     }
 }
 
-public enum XValidateHeadersSpecifiedParameterAction
+public enum EXValidateHeadersSpecifiedParameterAction
 {
     Ignore,
     Prevent,
     Detect
 }
 
-public enum XValidateHeadersUnspecifiedParameterAction
+public enum EXValidateHeadersUnspecifiedParameterAction
 {
     Ignore,
     Prevent,
     Detect
 }
 
-public interface XValidateHeadersChild { }
+public interface IXValidateHeadersChild { }

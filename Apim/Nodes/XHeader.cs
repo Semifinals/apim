@@ -1,10 +1,10 @@
 ﻿namespace Semifinals.Apim.Nodes;
 
-public class XHeader : XElement, XValidateHeadersChild
+public class XHeader : XElement, IXValidateHeadersChild
 {
     public XHeader(
         string name,
-        XParameterAction action)
+        EXHeaderAction action)
         : base("header")
     {
         Add(
@@ -13,7 +13,7 @@ public class XHeader : XElement, XValidateHeadersChild
     }
 }
 
-public enum XHeaderAction
+public enum EXHeaderAction
 {
     Ignore,
     Prevent,
