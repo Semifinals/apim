@@ -1,3 +1,6 @@
+using Semifinals.Apim.Enums;
+using Semifinals.Apim.Interfaces;
+
 namespace Semifinals.Apim.Nodes;
 
 public class XSetBody : XElement, IXReturnResponseChild, IXSendOneWayRequestChild, IXSendRequestChild
@@ -13,9 +16,4 @@ public class XSetBody : XElement, IXReturnResponseChild, IXSendOneWayRequestChil
             new XAttribute("template", template),
             value);
     }
-}
-
-public enum EXSetBodyTemplate
-{
-    Liquid
 }

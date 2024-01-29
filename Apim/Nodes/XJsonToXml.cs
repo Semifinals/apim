@@ -1,4 +1,6 @@
-﻿namespace Semifinals.Apim.Nodes;
+﻿using Semifinals.Apim.Enums;
+
+namespace Semifinals.Apim.Nodes;
 
 public class XJsonToXml : XElement
 {
@@ -19,10 +21,4 @@ public class XJsonToXml : XElement
             new XAttribute("content-accept-header", contentAcceptHeader),
             new XAttribute("parse-date", parseDate));
     }
-}
-
-public enum EXJsonToXmlApply
-{
-    Always,
-    ContentTypeJson
 }

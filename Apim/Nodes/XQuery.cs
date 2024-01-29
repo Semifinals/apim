@@ -1,11 +1,14 @@
-﻿namespace Semifinals.Apim.Nodes;
+﻿using Semifinals.Apim.Enums;
+using Semifinals.Apim.Interfaces;
+
+namespace Semifinals.Apim.Nodes;
 
 public class XQuery : XElement, IXValidateParametersChild
 {
     public XQuery(
         string name,
-        EXQuerySpecifiedParameterAction specifiedAction,
-        EXQueryUnspecifiedParameterAction unspecifiedAction)
+        EAction specifiedAction,
+        EAction unspecifiedAction)
         : base("query")
     {
         Add(
@@ -14,19 +17,3 @@ public class XQuery : XElement, IXValidateParametersChild
             new XAttribute("unspecified-parameter-action", unspecifiedAction));
     }
 }
-
-public enum EXQuerySpecifiedParameterAction
-{
-    Ignore,
-    Prevent,
-    Detect
-}
-
-public enum EXQueryUnspecifiedParameterAction
-{
-    Ignore,
-    Prevent,
-    Detect
-}
-
-public interface IXQueryChild { }

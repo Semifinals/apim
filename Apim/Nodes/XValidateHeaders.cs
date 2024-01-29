@@ -1,10 +1,13 @@
-﻿namespace Semifinals.Apim.Nodes;
+﻿using Semifinals.Apim.Enums;
+using Semifinals.Apim.Interfaces;
+
+namespace Semifinals.Apim.Nodes;
 
 public class XValidateHeaders : XElement
 {
     public XValidateHeaders(
-        EXValidateHeadersSpecifiedParameterAction specifiedAction,
-        EXValidateHeadersUnspecifiedParameterAction unspecifiedAction,
+        EAction specifiedAction,
+        EAction unspecifiedAction,
         params IXValidateHeadersChild[] nodes)
         : base("validate-headers")
     {
@@ -15,8 +18,8 @@ public class XValidateHeaders : XElement
     }
 
     public XValidateHeaders(
-        EXValidateHeadersSpecifiedParameterAction specifiedAction,
-        EXValidateHeadersUnspecifiedParameterAction unspecifiedAction,
+        EAction specifiedAction,
+        EAction unspecifiedAction,
         string errorsVariableName,
         params IXValidateHeadersChild[] nodes)
         : base("validate-headers")
@@ -28,19 +31,3 @@ public class XValidateHeaders : XElement
             nodes);
     }
 }
-
-public enum EXValidateHeadersSpecifiedParameterAction
-{
-    Ignore,
-    Prevent,
-    Detect
-}
-
-public enum EXValidateHeadersUnspecifiedParameterAction
-{
-    Ignore,
-    Prevent,
-    Detect
-}
-
-public interface IXValidateHeadersChild { }

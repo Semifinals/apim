@@ -1,4 +1,7 @@
-﻿namespace Semifinals.Apim.Nodes;
+﻿using Semifinals.Apim.Enums;
+using Semifinals.Apim.Interfaces;
+
+namespace Semifinals.Apim.Nodes;
 
 public class XSendOneWayRequest : XElement
 {
@@ -21,10 +24,6 @@ public class XSendOneWayRequest : XElement
     }
 }
 
-public enum EXSendOneWayRequestMode
-{
-    New,
-    Copy
-}
 
-public interface IXSendOneWayRequestChild { }
+
+

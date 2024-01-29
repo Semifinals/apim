@@ -1,10 +1,13 @@
-﻿namespace Semifinals.Apim.Nodes;
+﻿using Semifinals.Apim.Enums;
+using Semifinals.Apim.Interfaces;
+
+namespace Semifinals.Apim.Nodes;
 
 public class XStatusCode : XElement, IXValidateStatusCodeChild
 {
     public XStatusCode(
         HttpStatusCode code,
-        EXStatusCodeAction action)
+        EAction action)
         : base("status-code")
     {
         Add(
@@ -14,7 +17,7 @@ public class XStatusCode : XElement, IXValidateStatusCodeChild
 
     public XStatusCode(
         int code,
-        EXStatusCodeAction action)
+        EAction action)
         : base("status-code")
     {
         Add(
@@ -24,18 +27,11 @@ public class XStatusCode : XElement, IXValidateStatusCodeChild
     
     public XStatusCode(
         string code,
-        EXStatusCodeAction action)
+        EAction action)
         : base("status-code")
     {
         Add(
             new XAttribute("status-code", code),
             new XAttribute("action", action));
     }
-}
-
-public enum EXStatusCodeAction
-{
-    Ignore,
-    Prevent,
-    Detect
 }

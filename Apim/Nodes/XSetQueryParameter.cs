@@ -1,4 +1,7 @@
-﻿namespace Semifinals.Apim.Nodes;
+﻿using Semifinals.Apim.Enums;
+using Semifinals.Apim.Interfaces;
+
+namespace Semifinals.Apim.Nodes;
 
 public class XSetQueryParameter : XElement, IXSendOneWayRequestChild, IXSendRequestChild
 {
@@ -13,7 +16,7 @@ public class XSetQueryParameter : XElement, IXSendOneWayRequestChild, IXSendRequ
     
     public XSetQueryParameter(
         string name,
-        EXSetQueryParameterExistsAction existsAction = EXSetQueryParameterExistsAction.Override,
+        EExistsAction existsAction = EExistsAction.Override,
         params IXSetQueryParameterChild[] nodes) : base("set-query-parameter")
     {
         Add(
@@ -23,12 +26,3 @@ public class XSetQueryParameter : XElement, IXSendOneWayRequestChild, IXSendRequ
     }
 }
 
-public enum EXSetQueryParameterExistsAction
-{
-    Override,
-    Skip,
-    Append,
-    Delete
-}
-
-public interface IXSetQueryParameterChild { }

@@ -1,12 +1,15 @@
-﻿namespace Semifinals.Apim.Nodes;
+﻿using Semifinals.Apim.Enums;
+
+namespace Semifinals.Apim.Nodes;
 
 public class XValidateContent : XElement
 {
     public XValidateContent(
-        EXValidateContentAction unspecifiedContentTypeAction,
+        EAction unspecifiedContentTypeAction,
         int maxSize,
-        EXValidateContentAction sizeExceededAction,
-        string errorsVariableName) : base("validate-content")
+        EAction sizeExceededAction,
+        string errorsVariableName)
+        : base("validate-content")
     {
         Add(
             new XAttribute("unspecified-content-type-action",
@@ -18,11 +21,4 @@ public class XValidateContent : XElement
             new XAttribute("errors-variable-name",
                 errorsVariableName));
     }
-}
-
-public enum EXValidateContentAction
-{
-    Ignore,
-    Prevent,
-    Detect
 }

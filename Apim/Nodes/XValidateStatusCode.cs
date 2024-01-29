@@ -1,9 +1,12 @@
-﻿namespace Semifinals.Apim.Nodes;
+﻿using Semifinals.Apim.Enums;
+using Semifinals.Apim.Interfaces;
+
+namespace Semifinals.Apim.Nodes;
 
 public class XValidateStatusCode : XElement
 {
     public XValidateStatusCode(
-        EXValidateStatusCodeUnspecifiedAction unspecifiedAction,
+        EAction unspecifiedAction,
         params IXValidateStatusCodeChild[] nodes)
         : base("validate-status-code")
     {
@@ -13,7 +16,7 @@ public class XValidateStatusCode : XElement
     }
     
     public XValidateStatusCode(
-        EXValidateStatusCodeUnspecifiedAction unspecifiedAction,
+        EAction unspecifiedAction,
         string errorsVariableName,
         params IXValidateStatusCodeChild[] nodes)
         : base("validate-status-code")
@@ -24,12 +27,3 @@ public class XValidateStatusCode : XElement
             nodes);
     }
 }
-
-public enum EXValidateStatusCodeUnspecifiedAction
-{
-    Ignore,
-    Prevent,
-    Detect
-}
-
-public interface IXValidateStatusCodeChild { }

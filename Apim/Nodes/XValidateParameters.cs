@@ -1,10 +1,13 @@
-﻿namespace Semifinals.Apim.Nodes;
+﻿using Semifinals.Apim.Enums;
+using Semifinals.Apim.Interfaces;
+
+namespace Semifinals.Apim.Nodes;
 
 public class XValidateParameters : XElement
 {
     public XValidateParameters(
-        EXValidateParametersSpecifiedParameterAction specifiedAction,
-        EXValidateParametersUnspecifiedParameterAction unspecifiedAction,
+        EAction specifiedAction,
+        EAction unspecifiedAction,
         params IXValidateParametersChild[] nodes)
         : base("validate-parameters")
     {
@@ -15,8 +18,8 @@ public class XValidateParameters : XElement
     }
     
     public XValidateParameters(
-        EXValidateParametersSpecifiedParameterAction specifiedAction,
-        EXValidateParametersUnspecifiedParameterAction unspecifiedAction,
+        EAction specifiedAction,
+        EAction unspecifiedAction,
         string errorsVariableName,
         params IXValidateParametersChild[] nodes)
         : base("validate-parameters")
@@ -28,19 +31,3 @@ public class XValidateParameters : XElement
             nodes);
     }
 }
-
-public enum EXValidateParametersSpecifiedParameterAction
-{
-    Ignore,
-    Prevent,
-    Detect
-}
-
-public enum EXValidateParametersUnspecifiedParameterAction
-{
-    Ignore,
-    Prevent,
-    Detect
-}
-
-public interface IXValidateParametersChild { }

@@ -1,4 +1,6 @@
-﻿namespace Semifinals.Apim.Nodes;
+﻿using Semifinals.Apim.Enums;
+
+namespace Semifinals.Apim.Nodes;
 
 public class XXmlToJson : XElement
 {
@@ -13,16 +15,4 @@ public class XXmlToJson : XElement
             new XAttribute("apply", apply),
             new XAttribute("consider-accept-header", considerAcceptHeader));
     }
-}
-
-public enum EXXmlToJsonKind
-{
-    JavascriptFriendly,
-    Direct
-}
-
-public enum EXXmlToJsonApply
-{
-    Always,
-    ContentTypeXml
 }

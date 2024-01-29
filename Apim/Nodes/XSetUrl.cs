@@ -1,3 +1,5 @@
+using Semifinals.Apim.Interfaces;
+
 namespace Semifinals.Apim.Nodes;
 
 public class XSetUrl : XElement, IXSendOneWayRequestChild, IXSendRequestChild

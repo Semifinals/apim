@@ -1,3 +1,5 @@
+using Semifinals.Apim.Interfaces;
+
 namespace Semifinals.Apim.Nodes;
 
 public class XReturnResponse : XElement
@@ -19,4 +21,4 @@ public class XReturnResponse : XElement
     }
 }
 
-public interface IXReturnResponseChild { }
+

@@ -1,3 +1,6 @@
+using Semifinals.Apim.Enums;
+using Semifinals.Apim.Interfaces;
+
 namespace Semifinals.Apim.Nodes;
 
 public class XSendRequest : XElement
@@ -28,11 +31,3 @@ public class XSendRequest : XElement
             nodes);
     }
 }
-
-public enum EXSendRequestMode
-{
-    New,
-    Copy
-}
-
-public interface IXSendRequestChild { }

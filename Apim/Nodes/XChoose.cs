@@ -1,3 +1,5 @@
+using Semifinals.Apim.Interfaces;
+
 namespace Semifinals.Apim.Nodes;
 
 public class XChoose : XElement
@@ -7,5 +9,3 @@ public class XChoose : XElement
         Add(nodes);
     }
 }
-
-public interface IXChooseChild { }

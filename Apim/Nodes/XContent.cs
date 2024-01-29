@@ -1,4 +1,6 @@
-﻿namespace Semifinals.Apim.Nodes;
+﻿using Semifinals.Apim.Enums;
+
+namespace Semifinals.Apim.Nodes;
 
 public class XContent : XElement
 {
@@ -28,11 +30,4 @@ public class XContent : XElement
             Add(new XAttribute("schema-ref",
                 schemaRef));
     }
-}
-
-public enum EXContentValidationType
-{
-    Json,
-    Xml,
-    Soap
 }

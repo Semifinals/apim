@@ -1,4 +1,7 @@
-﻿namespace Semifinals.Apim.Nodes;
+﻿using Semifinals.Apim.Enums;
+using Semifinals.Apim.Interfaces;
+
+namespace Semifinals.Apim.Nodes;
 
 public class XSetHeader : XElement, IXReturnResponseChild, IXSendOneWayRequestChild, IXSendRequestChild
 {
@@ -14,7 +17,7 @@ public class XSetHeader : XElement, IXReturnResponseChild, IXSendOneWayRequestCh
     
     public XSetHeader(
         string name,
-        EXSetHeaderExistsAction existsAction = EXSetHeaderExistsAction.Override,
+        EExistsAction existsAction = EExistsAction.Override,
         params IXSetHeaderChild[] nodes)
         : base("set-header")
     {
@@ -24,13 +27,3 @@ public class XSetHeader : XElement, IXReturnResponseChild, IXSendOneWayRequestCh
             nodes);
     }
 }
-
-public enum EXSetHeaderExistsAction
-{
-    Override,
-    Skip,
-    Append,
-    Delete
-}
-
-public interface IXSetHeaderChild { }
