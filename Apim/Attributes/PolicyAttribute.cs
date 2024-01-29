@@ -7,9 +7,11 @@ public class PolicyAttribute : Attribute
 {
     public Policy Policy { get; protected set; }
 
+    public int Priority { get; set; } = -1;
+
     public PolicyAttribute() : base()
     {
-        Policy = new DefaultPolicy();
+        Policy = new DefaultPolicy(Priority);
     }
 
     public PolicyAttribute(Policy policy) : base()

@@ -6,6 +6,6 @@ public sealed class AuthorizeAttribute : PolicyAttribute
 {
     public AuthorizeAttribute() : base()
     {
-        Policy = new AuthorizePolicy();
+        Policy = new AuthorizePolicy(Priority);
     }
 }

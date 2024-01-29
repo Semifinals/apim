@@ -4,7 +4,7 @@ namespace Semifinals.Apim.Policies;
 
 public sealed class DefaultPolicy : Policy
 {
-    public DefaultPolicy() : base()
+    public DefaultPolicy(int priority) : base(priority)
     {
         Inbound.Add(new XBase());
         Backend.Add(new XBase());

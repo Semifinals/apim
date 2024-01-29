@@ -12,37 +12,31 @@ public sealed class AuthorizeFragment : Fragment
     {
         string authorizerUrl = "https://example.com";
 
-        var body = JsonConvert.SerializeObject(
-            new JObject(
-                new JProperty("input", new JObject(
-                    new JProperty("request", new JObject(
-                        new JProperty("headers", new JObject(
-                            new JProperty("host",
-                                "{{context.Request.Url.Host}}"),
-                            new JProperty("authorization",
-                                "{{context.Variables[\"authorization\"]}}"))),
-                        new JProperty("parsed_path",
-                            "{{context.Variables[\"uriSegments\"]}}"),
-                        new JProperty("path",
-                            "{{context.Request.Url.Path}}"),
-                        new JProperty("port",
-                            "{{context.Request.Url.Port}}"),
-                        new JProperty("scheme",
-                            "{{context.Request.Url.Scheme}}"),
-                        new JProperty("query_string",
-                            "{{context.Request.Url.QueryString}}"),
-                        new JProperty("url",
-                            "{{context.Request.Url.ToString()}}"),
-                        new JProperty("method",
-                            "{{context.Request.Method}}"),
-                        new JProperty("request_id",
-                            "{{context.Variables[\"requestId\"]}}"),
-                        new JProperty("body",
-                            "{{context.Variables[\"requestBody\"] ?? null}}"))),
-                    new JProperty("apim_name",
-                        "{{context.Variables[\"serviceName\"]}}"),
-                    new JProperty("original_url",
-                        "{{context.Variables[\"originalUrl\"]}}")))));
+        var body = new JsonObject
+        {
+            ["input"] = new JsonObject
+            {
+                ["request"] = new JsonObject
+                {
+                    ["headers"] = new JsonObject
+                    {
+                        ["host"] = "{{context.Request.Url.Host}}",
+                        ["authorization"] = "{{context.Variables[\"authorization\"]}}"
+                    },
+                    ["parsed_path"] = "{{context.Variables[\"uriSegments\"]}}",
+                    ["path"] = "{{context.Request.Url.Path}}",
+                    ["port"] = "{{context.Request.Url.Port}}",
+                    ["scheme"] = "{{context.Request.Url.Scheme}}",
+                    ["query_string"] = "{{context.Request.Url.QueryString}}",
+                    ["url"] = "{{context.Request.Url.ToString()}}",
+                    ["method"] = "{{context.Request.Method}}",
+                    ["request_id"] = "{{context.Variables[\"requestId\"]}}",
+                    ["body"] = "{{context.Variables[\"requestBody\"] ?? null}}"
+                },
+                ["apim_name"] = "{{context.Variables[\"serviceName\"]}}",
+                ["original_url"] = "{{context.Variables[\"originalUrl\"]}}"
+            }
+        }.ToJsonString();
 
         Data.Add(
             // Set variables for policy
