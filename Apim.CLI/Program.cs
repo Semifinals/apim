@@ -1,6 +1,7 @@
 ﻿using Semifinals.Apim.Attributes;
 using Semifinals.Apim.CLI.Exceptions;
 using Semifinals.Apim.CLI.Extensions;
+using Semifinals.Apim.Policies;
 
 namespace Semifinals.Apim.CLI;
 
@@ -10,36 +11,47 @@ public class Program
     {
         try
         {
-            Console.WriteLine("Loading assembly...");
-            // TODO: Determine assembly path from args
-            Console.WriteLine("DEBUG: " + string.Join(' ', args));
-            var assembly = Assembly.LoadFrom("");
+            // Parse arguments
+            if (args.Length == 0)
+                throw new ArgumentException();
 
+            var path = string.Join(' ', args)
+                .Trim()
+                .Replace("'", "")
+                .Replace("\"", "");
+            
+            // Load assembly
+            Console.WriteLine("Loading assembly...");
+            var assembly = Assembly.LoadFrom(path);
+
+            // Generate trigger policies
             Console.WriteLine("Generating trigger policies...");
-            var triggers = assembly.GetTypes()
-                // Get all unique policies on each trigger
+            var triggers = assembly.GetExportedTypes()
                 .SelectMany(type => type
                     .GetMethods()
-                    .Select(method => (
-                        Name: type.FullName + "." + method.Name,
-                        Method: method,
-                        Policies: method
-                            .GetCustomAttributes(typeof(PolicyAttribute), true)
-                            .OfType<PolicyAttribute>()
+                    .Where(method => method
+                        .GetCustomAttributes<FunctionNameAttribute>()
+                        .Any())
+                    .Select(method => KeyValuePair.Create(
+                        method
+                            .GetCustomAttributes<FunctionNameAttribute>()
+                            .First().Name,
+                        method
+                            .GetCustomAttributes<PolicyAttribute>()
                             .Select(attribute => attribute.Policy)
-                            .DistinctBy(policy => policy.GetType().Name)
-                            .OrderBy(policy => policy.Priority))))
-                // Filter out methods that have no policies
-                .Where(trigger => trigger.Policies.Any())
-                // Aggregate policies using <base />
-                .Select(trigger => (
-                    trigger.Name,
-                    trigger.Method,
-                    Policy: trigger.Policies.Aggregate((p, c) => p.Nest(c))));
-
+                            .OrderBy(policy => policy.Priority)
+                            .Aggregate(
+                                new DefaultPolicy() as Policy,
+                                (p, c) => p.Nest(c)))))
+                .ToDictionary(kvp => kvp);
+            
             // TODO: Apply generated trigger policies
 
-            Console.WriteLine("Successfully run!");
+            Console.WriteLine("Success!");
+        }
+        catch (ArgumentException)
+        {
+            Console.Error.WriteLine("You must provide the absolute path to the assembly");
         }
         catch (FileNotFoundException)
         {
@@ -47,7 +59,7 @@ public class Program
         }
         catch (InvalidPolicyException)
         {
-            Console.Error.WriteLine("Failed due to an invalid policy.");
+            Console.Error.WriteLine("Failed due to an invalid policy");
         }
     }
 }
