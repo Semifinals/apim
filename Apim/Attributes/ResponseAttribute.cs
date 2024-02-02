@@ -6,7 +6,10 @@ public class ResponseAttribute : OpenApiResponseWithoutBodyAttribute, IPolicyAtt
 {
     public int Priority { get; init; } = int.MaxValue;
 
-    public Policy Policy { get; } = new DefaultPolicy(); // TODO: Make response validation policy
+    public Policy Policy { get; }
 
-    public ResponseAttribute(HttpStatusCode statusCode) : base(statusCode) { }
+    public ResponseAttribute(HttpStatusCode statusCode) : base(statusCode)
+    {
+        Policy = new ResponsePolicy(statusCode);
+    }
 }
