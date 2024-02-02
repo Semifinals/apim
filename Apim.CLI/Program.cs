@@ -29,21 +29,11 @@ public class Program
             var triggers = assembly.GetExportedTypes()
                 .SelectMany(type => type
                     .GetMethods()
-                    .Where(method => method
-                        .GetCustomAttributes<FunctionNameAttribute>()
-                        .Any())
-                    .Select(method => KeyValuePair.Create(
-                        method
-                            .GetCustomAttributes<FunctionNameAttribute>()
-                            .First().Name,
-                        method
-                            .GetCustomAttributes<PolicyAttribute>()
-                            .Select(attribute => attribute.Policy)
-                            .OrderBy(policy => policy.Priority)
-                            .Aggregate(
-                                new DefaultPolicy() as Policy,
-                                (p, c) => p.Nest(c)))))
-                .ToDictionary(kvp => kvp);
+                    .Where(methodInfo => methodInfo.IsFunction())
+                    .Select(methodInfo => KeyValuePair.Create(
+                        methodInfo.ExtractFunctionName(),
+                        methodInfo.ParseTrigger())))
+                .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
             
             // TODO: Apply generated trigger policies
 
