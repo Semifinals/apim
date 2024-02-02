@@ -5,7 +5,7 @@ namespace Semifinals.Apim.Policies;
 
 public sealed class AuthorizePolicy : Policy
 {
-    public AuthorizePolicy(int priority) : base(priority)
+    public AuthorizePolicy() : base()
     {
         Inbound.Add(new XBase(), new AuthorizeFragment());
         Backend.Add(new XBase());

@@ -14,10 +14,19 @@ public static class MethodInfoExtensions
         .GetCustomAttributes<FunctionNameAttribute>()
         .First().Name;
 
-    public static Policy ExtractPolicy(this MethodInfo methodInfo) => methodInfo
-        .GetCustomAttributes<PolicyAttribute>()
+    public static Policy ExtractPolicy(this MethodInfo methodInfo) => AppDomain
+        .CurrentDomain
+        .GetAssemblies()
+        .SelectMany(assembly => assembly.GetTypes())
+        .Where(type =>
+            typeof(IPolicyAttribute).IsAssignableFrom(type) &&
+            type.IsClass &&
+            !type.IsAbstract)
+        .SelectMany(attribute =>
+            (IEnumerable<IPolicyAttribute>)
+            methodInfo.GetCustomAttributes(attribute))
+        .OrderBy(attribute => attribute.Priority)
         .Select(attribute => attribute.Policy)
-        .OrderBy(policy => policy.Priority)
         .Aggregate(
             new DefaultPolicy() as Policy,
             (p, c) => p.Nest(c));
