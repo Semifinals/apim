@@ -1,8 +1,9 @@
 ﻿using Semifinals.Apim.Enums;
+using Semifinals.Apim.Interfaces;
 
 namespace Semifinals.Apim.Nodes;
 
-public class XContent : XElement
+public class XContent : XElement, IXValidateContentChild
 {
     public XContent(
         string type,
