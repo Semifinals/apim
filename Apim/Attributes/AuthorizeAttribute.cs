@@ -2,7 +2,7 @@ using Semifinals.Apim.Policies;
 
 namespace Semifinals.Apim.Attributes;
 
-public sealed class AuthorizeAttribute : IPolicyAttribute
+public sealed class AuthorizeAttribute : IPolicyAttribute // TODO: Extend OpenApiSecurityAttribute
 {
     public int Priority { get; init; } = int.MaxValue;
 
