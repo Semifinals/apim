@@ -2,5 +2,5 @@
 
 public class ExampleAttribute : OpenApiExampleAttribute
 {
-    public ExampleAttribute(Type type) : base(type) { } // TODO: Enforce Type inheriting OpenApiExample{T}
+    public ExampleAttribute(Type type) : base(type) { }
 }

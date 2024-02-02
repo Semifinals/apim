@@ -6,11 +6,14 @@ public class ResponseBodyAttribute : OpenApiResponseWithBodyAttribute, IPolicyAt
 {
     public int Priority { get; init; } = int.MaxValue;
 
-    public Policy Policy { get; } = new DefaultPolicy(); // TODO: Make response validation policy
+    public Policy Policy { get; }
 
     public ResponseBodyAttribute(
         HttpStatusCode statusCode,
         string contentType,
         Type bodyType)
-        : base(statusCode, contentType, bodyType) { }
+        : base(statusCode, contentType, bodyType)
+    {
+        Policy = new ResponseBodyPolicy(statusCode, contentType);
+    }
 }

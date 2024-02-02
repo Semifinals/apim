@@ -6,8 +6,13 @@ public class RequestBodyAttribute : OpenApiRequestBodyAttribute, IPolicyAttribut
 {
     public int Priority { get; init; } = int.MaxValue;
 
-    public Policy Policy { get; } = new DefaultPolicy(); // TODO: Make request validation policy
+    public Policy Policy { get; }
 
-    public RequestBodyAttribute(string contentType, Type bodyType)
-        : base(contentType, bodyType) { }
+    public RequestBodyAttribute(
+        string contentType,
+        Type bodyType)
+        : base(contentType, bodyType)
+    {
+        Policy = new RequestBodyPolicy(contentType);
+    }
 }

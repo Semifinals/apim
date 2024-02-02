@@ -3,13 +3,13 @@ using Semifinals.Apim.Nodes;
 
 namespace Semifinals.Apim.Templates;
 
-public class ResponseTemplate : Template
+public class ValidateStatusCodeTemplate : Template
 {
-    public ResponseTemplate(HttpStatusCode statusCode) : base()
+    public ValidateStatusCodeTemplate(HttpStatusCode statusCode) : base()
     {
         Add(
             new XValidateStatusCode(
-                EAction.Prevent,
+                unspecifiedAction: EAction.Prevent,
                 new XStatusCode(statusCode, EAction.Ignore)));
     }
 }
