@@ -5,9 +5,19 @@ namespace Semifinals.Apim.Attributes;
 /// <summary>
 /// Requires the request be authorized to reach the endpoint.
 /// </summary>
-public sealed class AuthorizeAttribute : IPolicyAttribute // TODO: Extend OpenApiSecurityAttribute
+public sealed class AuthorizeAttribute : OpenApiSecurityAttribute, IPolicyAttribute
 {
     public int Priority { get; init; } = int.MaxValue;
 
-    public Policy Policy { get; } = new AuthorizePolicy();
+    public Policy Policy { get; }
+
+    public AuthorizeAttribute(params int[] permissionsRequired)
+        : base("SFT", SecuritySchemeType.Http)
+    {
+        Policy = new AuthorizePolicy(permissionsRequired);
+        BearerFormat = "SFT";
+        Description = "Authenticate using a Semifinals bearer token";
+        In = OpenApiSecurityLocationType.Header;
+        Scheme = OpenApiSecuritySchemeType.Bearer;
+    }
 }
