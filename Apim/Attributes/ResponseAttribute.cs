@@ -2,6 +2,9 @@
 
 namespace Semifinals.Apim.Attributes;
 
+/// <summary>
+/// Adds a valid response status code to an endpoint without a body in the response.
+/// </summary>
 public class ResponseAttribute : OpenApiResponseWithoutBodyAttribute, IPolicyAttribute
 {
     public int Priority { get; init; } = int.MaxValue;
