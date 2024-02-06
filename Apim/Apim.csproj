@@ -7,7 +7,6 @@
     <AssemblyName>Semifinals.Apim</AssemblyName>
     <RootNamespace>Semifinals.Apim</RootNamespace>
     <PackageId>Semifinals.Apim</PackageId>
-    <Version>0.0.1</Version>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Company>Semifinals</Company>
     <Product>Apim</Product>
