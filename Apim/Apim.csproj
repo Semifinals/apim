@@ -4,7 +4,15 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <RootNamespace>Semifinals.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
+    <AssemblyName>Semifinals.Apim</AssemblyName>
+    <RootNamespace>Semifinals.Apim</RootNamespace>
+    <PackageId>Semifinals.Apim</PackageId>
+    <Version>0.0.1</Version>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Company>Semifinals</Company>
+    <Product>Apim</Product>
+    <Authors>FinOCE</Authors>
+    <Description>Package for managing gateway policies for distributed systems</Description>
   </PropertyGroup>
 
   <ItemGroup>
