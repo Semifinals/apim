@@ -5,6 +5,7 @@ namespace Semifinals.Apim.Attributes;
 /// <summary>
 /// Requires the request be authorized to reach the endpoint.
 /// </summary>
+[AttributeUsage(validOn: AttributeTargets.Method, AllowMultiple = true)]
 public sealed class AuthorizeAttribute : OpenApiSecurityAttribute, IPolicyAttribute
 {
     public int Priority { get; init; } = int.MaxValue;
