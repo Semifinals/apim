@@ -1,21 +1,24 @@
-﻿using Semifinals.Apim.Attributes;
-using Semifinals.Apim.CLI.Exceptions;
+﻿using Semifinals.Apim.CLI.Exceptions;
 using Semifinals.Apim.CLI.Extensions;
-using Semifinals.Apim.Policies;
+using Semifinals.Apim.CLI.Managers;
 
 namespace Semifinals.Apim.CLI;
 
 public class Program
 {
-    public static void Main(string[] args)
+    public static async void Main(string[] args)
     {
         try
         {
             // Parse arguments
-            if (args.Length == 0)
-                throw new ArgumentException();
+            if (args.Length == 0) throw new ArgumentException("No arguments provided");
+            else if (args.Length < 4) throw new ArgumentException("Not all arguments were provided");
 
-            var path = string.Join(' ', args)
+            var resoureGroupName = args[0];
+            var apimServiceName = args[1];
+            var apiId = args[2];
+
+            var path = string.Join(' ', args[3..])
                 .Trim()
                 .Replace("'", "")
                 .Replace("\"", "");
@@ -30,18 +33,19 @@ public class Program
                 .SelectMany(type => type
                     .GetMethods()
                     .Where(methodInfo => methodInfo.IsFunction())
-                    .Select(methodInfo => KeyValuePair.Create(
-                        methodInfo.ExtractFunctionName(),
-                        methodInfo.ParseTrigger())))
-                .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
-            
-            // TODO: Apply generated trigger policies
+                    .Select(methodInfo => methodInfo.ParseTrigger()));
 
+            // Apply generated trigger policies
+            Console.WriteLine("Deploying updated policies to APIM...");
+            AzureResourceManager arm = new(resoureGroupName, apimServiceName, apiId);
+            await arm.Deploy(triggers);
+
+            // Log success if program completed without exception
             Console.WriteLine("Success!");
         }
-        catch (ArgumentException)
+        catch (ArgumentException ex)
         {
-            Console.Error.WriteLine("You must provide the absolute path to the assembly");
+            Console.Error.WriteLine($"Deployment failed due to an ArgumentException: {ex.Message}");
         }
         catch (FileNotFoundException)
         {

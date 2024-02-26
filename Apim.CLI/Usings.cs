@@ -1,7 +1,14 @@
-﻿global using Microsoft.Azure.WebJobs;
+﻿global using Azure.Identity;
+global using Azure;
+global using Azure.ResourceManager;
+global using Azure.ResourceManager.ApiManagement;
+global using Azure.ResourceManager.ApiManagement.Models;
+global using Azure.ResourceManager.Resources;
+global using Microsoft.Azure.WebJobs;
 global using System;
 global using System.Collections.Generic;
 global using System.IO;
 global using System.Linq;
 global using System.Reflection;
+global using System.Threading.Tasks;
 global using System.Xml.Linq;
